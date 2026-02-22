@@ -200,35 +200,125 @@ Together they form:
 
 ---
 
-# 📁 Folder Structure
-VectorScan/ │ 
+## 📁 Folder Structure
 
-├── dataset/ │
+VectorScan/ 
 
-    ├── cyber.txt │
+│
 
-├── models/ │  
+├── dataset/
 
-    ├── baseline/ │
-    
-    └── finetuned/ │
+│   └── cyber.txt
 
-├── engines/ │
+│
 
-    ├── encoder_engine.py │
-    
-    └── decoder_engine.py │
+├── models/
 
-├── reports.txt │
+│   ├── baseline/
 
-    ├── vectorscan_report │
+│   │   └── <model_name>/
 
-├── main.py 
+│   └── finetuned/
+
+│       └── <model_name>/
+
+│
+
+├── engines/
+
+│   ├── encoder_engine.py
+
+│   └── decoder_engine.py
+
+│
+
+├── main.py
 
 └── README.md
 
 Fine-tuning is developer responsibility.  
 VectorScan analyzes resulting models only.
+
+---
+
+## 🚀 How to Run
+
+VectorScan analyzes representation drift between a baseline model and its fine-tuned version.  
+It automatically detects whether the model is an encoder or decoder architecture.
+
+---
+
+### 1️⃣ Install Requirements
+
+Make sure Python 3.10+ is installed.
+
+Install dependencies:
+
+pip install torch transformers numpy scipy scikit-learn
+
+(Optional virtual environment)
+
+python -m venv venv
+venv\Scripts\activate      (Windows)
+source venv/bin/activate   (Linux/macOS)
+
+---
+
+### 2️⃣ Prepare Models
+
+Place your models inside:
+
+models/baseline/<model_name>/
+models/finetuned/<model_name>/
+
+Example:
+
+Encoder:
+- distilbert-base-uncased
+
+Decoder:
+- distilgpt2
+
+Models are NOT included in this repository.
+
+---
+
+### 3️⃣ Run VectorScan
+
+From the project root:
+
+python main.py
+
+VectorScan will automatically:
+
+- Detect architecture
+- Compute embedding drift
+- Analyze top-100 most drifted tokens
+- Compute geometry drift
+- Compute behavioral drift (KL divergence)
+- Compute logit drift
+- Compute entropy drift
+
+---
+
+### 4️⃣ Output
+
+After execution, a JSON report will be generated:
+
+vectorscan_report.json
+
+This report contains:
+
+- Embedding drift metrics
+- Geometry stability metrics
+- Behavioral divergence
+- Logit similarity
+- Entropy change
+
+---
+
+VectorScan does not perform fine-tuning.
+It analyzes model changes after fine-tuning only.
 
 ---
 
