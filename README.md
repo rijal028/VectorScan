@@ -187,6 +187,10 @@ Together they form:
 # 📁 Folder Structure
 VectorScan/ │ 
 
+├── dataset/ │
+
+    ├── cyber.txt │
+
 ├── models/ │  
 
     ├── baseline/ │
@@ -198,6 +202,10 @@ VectorScan/ │
     ├── encoder_engine.py │
     
     └── decoder_engine.py │
+
+├── reports.txt │
+
+    ├── vectorscan_report │
 
 ├── main.py 
 
