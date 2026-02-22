@@ -140,6 +140,22 @@ Tested on:
 
 ---
 
+## Validation Summary
+
+VectorScan v2 was validated on:
+
+- GPT2 (epoch 1 vs 5)
+- DistilBERT (epoch 1 vs 5)
+- 300-sample cybersecurity dataset
+
+Results confirm:
+
+- Architecture-specific drift patterns
+- Probability redistribution without major embedding shift
+- Entropy confidence compression in decoder models
+
+---
+
 # ⚡ Performance Optimization
 
 VectorScan v2:
